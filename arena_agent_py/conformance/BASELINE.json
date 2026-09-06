@@ -1,0 +1,52 @@
+{
+  "baseline": "conformance-baseline-v1",
+  "campaign": "Final Pack Conformance Review",
+  "pack": "arena-agent-instructions-pack-v2",
+  "repository": {
+    "commit": "3ba15de915b3f99ad51c520ac4e2b3a901a780f4",
+    "tag": "conformance-baseline-v1"
+  },
+  "evidence_chain": [
+    "arena-agent-instructions-pack-v2.md",
+    "requirements / templates",
+    "arena_agent_py/conformance/CONFORMANCE_MATRIX.md",
+    "arena_agent_py/arena_agent/ (implementation)",
+    "arena_agent_py/tests/ (460/460)",
+    "independent final re-audit"
+  ],
+  "matrix_rows": 72,
+  "tests_passed": 460,
+  "tests_total": 460,
+  "regressions": 0,
+  "unparsed": 0,
+  "conformance": {
+    "CONFORMANT": 44,
+    "PARTIAL": 16,
+    "NON-CONFORMANT": 1,
+    "UNVERIFIED": 1,
+    "NOT-APPLICABLE": 10
+  },
+  "phases": {
+    "phase_1_final_report": "COMPLETE_FROZEN",
+    "phase_2_wiki_page": "COMPLETE_FROZEN",
+    "phase_3_workspace_export": "COMPLETE_FROZEN",
+    "phase_4_html_presentation": "COMPLETE_FROZEN",
+    "phase_5a_evidence_hardening": "COMPLETE",
+    "phase_5b_r3_r15_r19_r21_r17": "COMPLETE_FROZEN",
+    "phase_5c_r8_r4_r18_r2": "COMPLETE_FROZEN",
+    "phase_6_r14_r10_r16_r7_r1": "COMPLETE",
+    "final_pack_conformance_review": "COMPLETE"
+  },
+  "normative_source_observations": [
+    "pack \u00a724.1 cites \u00a732 for Change-Impact Analysis; actual section is \u00a736",
+    "pack \u00a79.2 cites \u00a729 for a Work Item's State block; actual section is \u00a727",
+    "pack \u00a724.2 cites \u00a729 for the Lifecycle Log concept; actual section is \u00a727 (no section literally titled Lifecycle Log exists in the pack text)",
+    "pack \u00a715.1 cites \u00a733 for the Knowledge Graph; actual section is \u00a734",
+    "pack cites \u00a737 for the Final Report; actual sections are \u00a739/\u00a740 (previously disclosed)"
+  ],
+  "known_documentation_staleness": [
+    "arena_agent_py/README.md 'Tests' section states 241 tests and describes only Phases 1-4; actual suite is 460/460 as of this baseline; left unfixed by choice, tracked as a separate Class A (documentation) item"
+  ],
+  "campaign_status": "COMPLETE",
+  "notes": "This file is a machine-readable summary of arena_agent_py/conformance/CONFORMANCE_MATRIX.md at the moment of the conformance-baseline-v1 tag. It describes the baseline; it must never be regenerated to reflect a different state without also cutting a new baseline tag (e.g. conformance-baseline-v2). The matrix file remains the detailed, authoritative decision artifact -- this manifest exists only to give tooling a single, small, unambiguous identity record to point at. See BASELINE_PRESERVATION_PLAN.md for the full governance protocol governing when and how this file may ever change."
+}
