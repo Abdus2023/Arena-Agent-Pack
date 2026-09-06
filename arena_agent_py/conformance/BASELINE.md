@@ -34,7 +34,9 @@ in a new baseline if accepted.
 | `CONFORMANCE_MATRIX.md` | The detailed 72-row decision artifact — the authoritative record of every requirement, its interpretation, implementation evidence, test evidence, and disposition. |
 | `BASELINE.json` | Machine-readable identity and summary of this baseline, describing (not recomputing) the matrix above at the `conformance-baseline-v1` commit. |
 | `BASELINE.md` | This file — a short human-readable pointer to the baseline's identity and meaning. |
-| `BASELINE_PRESERVATION_PLAN.md` | The full Baseline Protocol: what "frozen" means, how residual statuses must be read, the reopening rule, change-classification system, and the governance contract for all future work touching this territory. |
+| `CHANGELOG.md` | Chronological pointer to campaign milestones and the baseline-tag table; future baseline tags are appended as new rows, never replacing the v1 row. |
+| `BASELINE_PRESERVATION_PLAN.md` | The full Baseline Protocol: what "frozen" means, how residual statuses must be read, the reopening rule, the change-classification system, and the principles behind governance of all future work touching this territory. |
+| `CHANGE_CONTROL_CONTRACT.md` | The operational post-baseline change-control contract: change classes A–E, the Baseline Impact Assessment and its four outcomes, mandatory new-phase triggers, v1→v2 delta vocabulary, residual-finding and pack-change protocols, evidence requirements, the agent decision boundary, merge/release gates, and the conditions for establishing baseline-v2. Codifies the rules foreshadowed in Part II of the Baseline Protocol. Does not modify this baseline. |
 
 ## The one rule
 
