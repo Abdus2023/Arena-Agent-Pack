@@ -591,7 +591,14 @@ new phase (D) or a separate pack-maintenance project (E, see §8).
 
 ## 27. Conformance Impact Assessment (a lightweight bridge, not a new phase)
 
-Not implemented now — the next conceptual layer between everyday engineering
+> **Post-baseline note:** this conceptual layer is now codified as the
+> operational `CHANGE_CONTROL_CONTRACT.md` (change classes A–E, assessment
+> questions, four outcomes, mandatory-phase triggers, evidence requirements,
+> agent decision boundary, merge/release gates). The questions below remain
+> its original design sketch; the contract is the governing text for any
+> change proposed after the freeze.
+
+The next conceptual layer between everyday engineering
 and formal remediation. A lightweight assessment for any change that
 *touches* frozen territory would ask:
 
@@ -692,10 +699,12 @@ accidentally reversed:
 
 ```text
 conformance/
-├── CONFORMANCE_MATRIX.md      -- the detailed 72-row decision artifact
-├── BASELINE.json              -- machine-readable identity + summary
-├── BASELINE.md                -- short human-readable explanation
-└── CHANGELOG.md               -- historical evolution of conformance decisions
+├── CONFORMANCE_MATRIX.md        -- the detailed 72-row decision artifact
+├── BASELINE.json                -- machine-readable identity + summary
+├── BASELINE.md                  -- short human-readable explanation
+├── CHANGELOG.md                 -- historical evolution of conformance decisions
+└── CHANGE_CONTROL_CONTRACT.md   -- post-baseline change-control contract
+                                   (classification, assessment, gates)
 ```
 
 **Do not create these merely because they sound useful.** The frozen baseline

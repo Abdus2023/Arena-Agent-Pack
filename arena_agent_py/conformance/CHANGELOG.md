@@ -40,3 +40,12 @@ tags should be read (per-row UNCHANGED / IMPROVED / REGRESSED / NEW / REMOVED
 / RECLASSIFIED / SCOPE-CHANGED classification), and §26–29 for how to decide
 whether an incoming change is ordinary engineering or requires a new,
 explicitly scoped conformance phase before it can move a residual row.
+
+The operational rules for evaluating every post-baseline change are codified
+in `CHANGE_CONTROL_CONTRACT.md`: change classes A–E, the Baseline Impact
+Assessment and its four outcomes (NO-IMPACT / IMPACTED-BUT-NOT-CONFORMANCE /
+CONFORMANCE-IMPACT / NORMATIVE-IMPACT), mandatory new-phase triggers,
+evidence requirements per change class, the agent/human decision boundary,
+merge and release gates, and the minimum requirements for establishing
+`conformance-baseline-v2`. That contract governs future work; it does not
+alter any historical row above.
