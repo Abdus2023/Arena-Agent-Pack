@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arena-agent"
+version = "2.0.0"
+description = "Python implementation of the Arena Agent Prompt Instructions Pack (v2)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "click>=8.1",
+    "rich>=13.0",
+    "markdown>=3.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+]
+
+[project.scripts]
+arena = "arena_agent.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["arena_agent*"]
