@@ -1,0 +1,43 @@
+{
+  "workflow_id": "repository-forensics",
+  "version": "1.0.0",
+  "description": "A reusable repository research pipeline from scoped discovery to adoption decisions and persisted project records.",
+  "steps": [
+    {
+      "id": "scope-and-inventory",
+      "skill": "github-research-to-project",
+      "depends_on": [],
+      "inputs": ["research_question", "candidate_urls", "target_constraints"],
+      "outputs": ["scope", "candidate_inventory"]
+    },
+    {
+      "id": "source-audit",
+      "skill": "source-intelligence-audit",
+      "depends_on": ["scope-and-inventory"],
+      "inputs": ["candidate_inventory", "target_use"],
+      "outputs": ["source_audits", "reuse_decisions"]
+    },
+    {
+      "id": "architecture-extraction",
+      "skill": "plugin-ecosystem-forensics",
+      "depends_on": ["source-audit"],
+      "inputs": ["source_audits", "architecture_question"],
+      "outputs": ["architecture_matrix", "candidate_components"]
+    },
+    {
+      "id": "bootstrap-and-register",
+      "skill": "repository-bootstrap",
+      "depends_on": ["architecture-extraction"],
+      "inputs": ["destination_repo", "branch", "approved_artifacts"],
+      "outputs": ["persisted_files", "commit_ids", "fetch_back_report"]
+    },
+    {
+      "id": "evidence-finalization",
+      "skill": "arena-evidence-workspace",
+      "depends_on": ["bootstrap-and-register"],
+      "tools": [".agent/tools/validate_evidence_ledger.py", ".agent/tools/compose_workflow.py"],
+      "inputs": ["audit_results", "commit_ids", "validation_results"],
+      "outputs": ["final_report", "open_gaps"]
+    }
+  ]
+}
