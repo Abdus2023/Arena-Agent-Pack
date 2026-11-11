@@ -1,0 +1,43 @@
+{
+  "workflow_id": "openclaw-runtime-composition",
+  "version": "1.0.0",
+  "description": "Research, design, compose, and verify an explicit plugin/runtime graph for OpenClaw, with Cordis as an optional internal composition subsystem.",
+  "steps": [
+    {
+      "id": "pin-sources",
+      "skill": "plugin-ecosystem-forensics",
+      "depends_on": [],
+      "inputs": ["repository_urls", "target_commit", "research_question"],
+      "outputs": ["source_inventory", "revision_ledger"]
+    },
+    {
+      "id": "construct-plugin-graph",
+      "skill": "openclaw-verifiable-plugin-graph",
+      "depends_on": ["pin-sources"],
+      "inputs": ["source_inventory", "plugin_manifests", "host_contract"],
+      "outputs": ["plugin_nodes", "typed_edges", "activation_plan", "lifecycle_model"]
+    },
+    {
+      "id": "define-runtime-adapters",
+      "skill": "framework-agnostic-runtime-adapters",
+      "depends_on": ["construct-plugin-graph"],
+      "inputs": ["host_contract", "domain_ports", "capability_requirements"],
+      "outputs": ["adapter_contract", "capability_matrix", "conformance_suite"]
+    },
+    {
+      "id": "cordis-composition-decision",
+      "skill": "cordis-openclaw-composition",
+      "depends_on": ["define-runtime-adapters"],
+      "inputs": ["adapter_contract", "cordis_revision", "openclaw_revision"],
+      "outputs": ["responsibility_matrix", "cordis_graph", "adoption_decision"]
+    },
+    {
+      "id": "evidence-and-release-review",
+      "skill": "arena-evidence-workspace",
+      "depends_on": ["construct-plugin-graph", "define-runtime-adapters", "cordis-composition-decision"],
+      "tools": [".agent/tools/validate_evidence_ledger.py", ".agent/tools/compose_workflow.py"],
+      "inputs": ["test_results", "source_inventory", "design_decisions"],
+      "outputs": ["evidence_ledger", "release_gate_report"]
+    }
+  ]
+}
