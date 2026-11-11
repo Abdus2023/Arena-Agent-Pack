@@ -3,7 +3,7 @@
 **Date:** 2026-11-11  
 **Repository:** Abdus2023/Arena-Agent-Pack  
 **Branch:** arena/compositional-skills-2026-11-11  
-**Latest integration commit at report update:** ea6ca5e20ea842fe35090ab9b116ed23d21ed883  
+**Latest integration commit at report update:** c9d07237dc402b092457c2d5a2c0f879199e7c5a  
 **Purpose:** Convert repeatable processes from available prior work into composable skills, deterministic tools, and workflow manifests.
 
 ## Scope reconstructed
@@ -26,7 +26,7 @@ This is a bounded extraction from available conversation summaries, user-supplie
 - 3 composable workflow manifests under .agent/workflows/.
 - 1 test module containing 19 unit tests under .agent/tests/.
 - 1 source register under .agent/references/.
-- 1 package index and this report.
+- 1 package index and this report.\n- 1 GitHub Actions workflow for Python 3.10–3.12 validation.
 
 ## Explicit exclusions
 
@@ -49,7 +49,7 @@ This is a bounded extraction from available conversation summaries, user-supplie
 | HELPER_TESTED | NOT_RUN | 19 unit tests authored; Python test execution unavailable in this session |
 | WORKFLOW_TESTED | PARTIALLY_VERIFIED | Static DAG checks found no missing skill/tool/dependency references or cycles; actual workflow execution was not performed |
 | RUNTIME_CONFORMANT | NOT_RUN | No target runtime discovery/invocation test |
-| PERSISTENCE_VERIFIED | PASS | 25 changed paths were fetched back from the target branch and inspected for expected identities/content markers |
+| PERSISTENCE_VERIFIED | PASS | 26 unique changed paths were fetched back from the target branch and inspected for expected identities/content markers |
 
 ## Computational helper contracts
 
@@ -64,8 +64,8 @@ This is a bounded extraction from available conversation summaries, user-supplie
 2. Run the canonical structural validator over all skills.
 3. Validate the JSON schemas with a Draft 2020-12 implementation.
 4. Add CI integration only after inspecting the repository's existing CI configuration.
-5. Test .agent discovery and invocation in each intended runtime; do not infer it from folder presence.
-6. Create domain-specific evidence records in .arena when actual implementation or physical experimentation begins.
+5. Inspect the GitHub Actions run for the CI workflow commit; no completed check result was available at report time.\n6. Test .agent discovery and invocation in each intended runtime; do not infer it from folder presence.
+7. Create domain-specific evidence records in .arena when actual implementation or physical experimentation begins.
 7. Resolve and pin Cordis upstream before any API-specific integration claims.
 
 ## Release statement
