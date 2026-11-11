@@ -1,4 +1,5 @@
 from __future__ import annotations
+import json
 import sys
 import tempfile
 import unittest
@@ -52,6 +53,13 @@ description: A test skill.
 """ + ("x" * 300), encoding="utf-8")
             self.assertTrue(any("does not match directory" in e for e in validate_skill.validate(path)))
 
+    def test_repository_skills_pass_structural_lint(self):
+        skills = sorted((ROOT / ".agent" / "skills").rglob("SKILL.md"))
+        self.assertGreaterEqual(len(skills), 11)
+        for path in skills:
+            with self.subTest(path=str(path)):
+                self.assertEqual(validate_skill.validate(path), [])
+
 class WorkflowCompositionTests(unittest.TestCase):
     def make_root(self, root: Path):
         (root / ".agent/skills/a").mkdir(parents=True)
@@ -103,6 +111,37 @@ class WorkflowCompositionTests(unittest.TestCase):
             self.assertFalse(result["ok"])
             self.assertTrue(any("unknown dependency" in e for e in result["errors"]))
 
+    def test_tool_path_traversal_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.make_root(root)
+            result = compose_workflow.compose({
+                "workflow_id": "traversal", "version": "1",
+                "steps": [{"id": "a", "skill": "a", "tools": ["../README.md"]}]
+            }, root)
+            self.assertFalse(result["ok"])
+            self.assertTrue(any("under .agent/tools" in e for e in result["errors"]))
+
+    def test_malformed_tools_array_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.make_root(root)
+            result = compose_workflow.compose({
+                "workflow_id": "bad-tools", "version": "1",
+                "steps": [{"id": "a", "skill": "a", "tools": "tool.py"}]
+            }, root)
+            self.assertFalse(result["ok"])
+            self.assertTrue(any("tools must be an array" in e for e in result["errors"]))
+
+    def test_all_repository_workflows_compose(self):
+        manifests = sorted((ROOT / ".agent" / "workflows").glob("*.json"))
+        self.assertEqual(len(manifests), 3)
+        for path in manifests:
+            with self.subTest(path=str(path)):
+                manifest = json.loads(path.read_text(encoding="utf-8"))
+                result = compose_workflow.compose(manifest, ROOT)
+                self.assertTrue(result["ok"], result["errors"])
+
 class EvidenceLedgerTests(unittest.TestCase):
     def test_verified_claim_requires_evidence(self):
         ledger = {
@@ -150,6 +189,10 @@ class RFCalculatorTests(unittest.TestCase):
     def test_nonpositive_input_rejected(self):
         with self.assertRaises(ValueError):
             foxhole_rf_calc.resonant_frequency(0, 1e-12)
+
+    def test_dbm_overflow_rejected(self):
+        with self.assertRaises(ValueError):
+            foxhole_rf_calc.dbm_to_watts(10_000)
 
 if __name__ == "__main__":
     unittest.main()
