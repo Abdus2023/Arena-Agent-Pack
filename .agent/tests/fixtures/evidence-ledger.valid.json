@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "sources": [
+    {
+      "id": "S1",
+      "uri": "https://example.invalid/source",
+      "revision": "fixture",
+      "retrieved_at": null,
+      "source_type": "test"
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "statement": "A test fixture demonstrates schema structure only.",
+      "claim_status": "ARGUMENT",
+      "verification_status": "PROVISIONAL",
+      "source_ids": ["S1"],
+      "evidence": []
+    }
+  ]
+}
