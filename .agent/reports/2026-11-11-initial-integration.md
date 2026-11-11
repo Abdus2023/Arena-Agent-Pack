@@ -3,7 +3,7 @@
 **Date:** 2026-11-11  
 **Repository:** Abdus2023/Arena-Agent-Pack  
 **Branch:** arena/compositional-skills-2026-11-11  
-**Latest integration commit at report update:** c9d07237dc402b092457c2d5a2c0f879199e7c5a  
+**Latest integration commit at report update:** 1bcfe241016e90190d74ae4b5df7df74609d8dc0  
 **Purpose:** Convert repeatable processes from available prior work into composable skills, deterministic tools, and workflow manifests.
 
 ## Scope reconstructed
@@ -36,7 +36,7 @@ This is a bounded extraction from available conversation summaries, user-supplie
 - No FOXHOLE LAB hardware measurement was performed.
 - No microscopic mechanism was verified.
 - No .agent runtime auto-discovery behavior was tested.
-- No existing ARENA CLI implementation or canonical instruction pack was modified.
+- No existing ARENA CLI implementation or canonical instruction pack was modified.\n- KARTAGO's Android/ADB-specific skills and Galaxy A06 tools remain in KARTAGO's own .agent workspace and were not duplicated into this cross-project package.
 - Cordis canonical upstream repository URL remains unresolved and is explicitly marked in the source register.
 
 ## Validation status
