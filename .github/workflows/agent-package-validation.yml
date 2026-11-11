@@ -1,0 +1,43 @@
+name: HARĒNA agent package validation
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-agent-package:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Validate skill packages
+        run: python .agent/tools/validate_skill.py .agent/skills
+      - name: Validate composable workflows
+        run: |
+          python .agent/tools/compose_workflow.py .agent/workflows/repository-forensics.json
+          python .agent/tools/compose_workflow.py .agent/workflows/openclaw-runtime-composition.json
+          python .agent/tools/compose_workflow.py .agent/workflows/foxhole-radio-lab.json
+      - name: Validate JSON syntax
+        run: |
+          python -m json.tool .agent/schemas/workflow.schema.json > /dev/null
+          python -m json.tool .agent/schemas/evidence-ledger.schema.json > /dev/null
+          python -m json.tool .agent/workflows/repository-forensics.json > /dev/null
+          python -m json.tool .agent/workflows/openclaw-runtime-composition.json > /dev/null
+          python -m json.tool .agent/workflows/foxhole-radio-lab.json > /dev/null
+      - name: Run helper tests
+        run: python -m unittest discover -s .agent/tests -v
