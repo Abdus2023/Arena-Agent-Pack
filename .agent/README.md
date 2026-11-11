@@ -77,4 +77,4 @@ The existing arena CLI remains the record-keeping and validation layer for proje
 
 ## Project boundaries
 
-See the source register. KARTAGO, THUGGA, OpenClaw/Cordis, and FOXHOLE LAB remain distinct projects. This shared substrate does not merge their implementation repositories or security boundaries.
+See the source register. KARTAGO, THUGGA, OpenClaw/Cordis, and FOXHOLE LAB remain distinct projects. This shared substrate does not merge their implementation repositories or security boundaries. Android/ADB-specific skills and Galaxy A06 tools remain in [KARTAGO's own .agent workspace](https://github.com/Abdus2023/KARTAGO/tree/arena/galaxy-a06-forensic-debloat/.agent); they are intentionally not duplicated here.
