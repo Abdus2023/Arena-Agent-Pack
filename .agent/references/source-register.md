@@ -6,7 +6,7 @@
 ## OpenClaw / Cordis runtime architecture
 
 - [OpenClaw](https://github.com/openclaw/openclaw) — host runtime, plugin loader, SDK, manifest, activation, and lifecycle research target.
-- [Cordis](https://github.com/cordisjs/cordis) — compositional runtime and lifecycle reference; exact revision/API compatibility must be inspected.
+- Cordis upstream — compositional runtime and lifecycle reference. The canonical repository URL was not resolved in this integration; resolve it before pinning a revision or making source claims.
 - [CordisClaw](https://github.com/Chinesezjc/CordisClaw) — integration/reference candidate; no adoption decision implied.
 
 ## DeepSeek Harness and plugin ecosystem
@@ -20,7 +20,7 @@
 - [dsh-session-format](https://github.com/Chinesezjc/dsh-session-format) — session schema and compatibility research target.
 - [Botuniverse](https://github.com/botuniverse) — TypeScript ecosystem/framework research target.
 
-## Foxhole radio experimental work
+## Skill-authoring provenance\n\n- [KARTAGO skill-creator](https://github.com/Abdus2023/KARTAGO/blob/arena/galaxy-a06-forensic-debloat/.agent/skills/skill-creator/SKILL.md) — source procedure ported and adapted for this package.\n- [KARTAGO HARĒNA standard](https://github.com/Abdus2023/KARTAGO/blob/arena/galaxy-a06-forensic-debloat/.agent/standards/skill-engineering-standard-v1.md) — source standard adapted for this package.\n\n## Foxhole radio experimental work
 
 The conversation-derived experimental program covers historical foxhole radios, razor-blade/graphite contacts, DC I–V characterization, RF response, AM demodulation, LC tuning, impedance/loading, noise, and microscopic mechanism hypotheses.
 
