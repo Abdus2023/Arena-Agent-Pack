@@ -54,7 +54,7 @@ Workflow manifests declare dependencies; they do not execute their steps.
 - [Source register](references/source-register.md)
 - [Skill engineering standard](standards/skill-engineering-standard-v1.md)
 
-## Validation commands
+## Continuous integration\n\nThe branch includes [.github/workflows/agent-package-validation.yml](../.github/workflows/agent-package-validation.yml), configured to run structural skill checks, workflow composition checks, JSON parsing, and helper tests on Python 3.10, 3.11, and 3.12. A workflow file being present does not prove that a run has completed; inspect the GitHub Actions result for the relevant commit.\n\n## Validation commands
 
 Run from repository root with Python 3.10+:
 
