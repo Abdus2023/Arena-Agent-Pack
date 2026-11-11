@@ -46,6 +46,7 @@ Workflow manifests declare dependencies; they do not execute their steps.
 - [compose_workflow.py](tools/compose_workflow.py) — validates skill/tool references and topologically orders a workflow DAG; does not execute it.
 - [validate_evidence_ledger.py](tools/validate_evidence_ledger.py) — checks source/claim references and evidence requirements; does not verify claim truth.
 - [foxhole_rf_calc.py](tools/foxhole_rf_calc.py) — idealized LC, Q-bandwidth, thermal-noise, dBm, and rectification-ratio calculations.
+- [validate_json_schema.py](tools/validate_json_schema.py) — Draft 2020-12 schema meta-validation and JSON instance validation (requires `jsonschema==4.23.0`).
 
 ## Schemas and references
 
@@ -66,6 +67,11 @@ Run from repository root with Python 3.10+:
     python3 .agent/tools/compose_workflow.py .agent/workflows/repository-forensics.json
     python3 .agent/tools/compose_workflow.py .agent/workflows/openclaw-runtime-composition.json
     python3 .agent/tools/compose_workflow.py .agent/workflows/foxhole-radio-lab.json
+    python3 -m pip install jsonschema==4.23.0
+    python3 .agent/tools/validate_json_schema.py --schema .agent/schemas/workflow.schema.json .agent/workflows/*.json
+    python3 .agent/tools/validate_json_schema.py --schema .agent/schemas/evidence-ledger.schema.json .agent/tests/fixtures/evidence-ledger.valid.json
+    python3 .agent/tools/validate_evidence_ledger.py .agent/tests/fixtures/evidence-ledger.valid.json
+    python3 .agent/tools/foxhole_rf_calc.py dbm-to-watts --dbm 0
     python3 -m unittest discover -s .agent/tests -v
 
 The existing arena CLI remains the record-keeping and validation layer for project audits, work items, decisions, counterexamples, gates, reports, and exports. Do not duplicate its data model in ad hoc files; link tool outputs and test artifacts into Arena records where practical.
