@@ -1,0 +1,52 @@
+{
+  "workflow_id": "foxhole-radio-lab",
+  "version": "1.0.0",
+  "description": "Reproducible experimental path from sample registration through DC, RF, AM, and mechanism assessment.",
+  "steps": [
+    {
+      "id": "register-sample-and-fixture",
+      "skill": "foxhole-radio-experimental-lab",
+      "depends_on": [],
+      "inputs": ["sample_identity", "surface_notes", "fixture_description"],
+      "outputs": ["sample_record", "safety_record"]
+    },
+    {
+      "id": "dc-characterization",
+      "skill": "foxhole-radio-experimental-lab",
+      "depends_on": ["register-sample-and-fixture"],
+      "tools": [".agent/tools/foxhole_rf_calc.py"],
+      "inputs": ["current_voltage_sweeps", "contact_force", "temperature"],
+      "outputs": ["iv_curves", "nonlinearity_metrics"]
+    },
+    {
+      "id": "rf-characterization",
+      "skill": "foxhole-radio-experimental-lab",
+      "depends_on": ["dc-characterization"],
+      "tools": [".agent/tools/foxhole_rf_calc.py"],
+      "inputs": ["calibrated_rf_power", "frequency_sweep", "load_impedance"],
+      "outputs": ["detector_response", "noise_floor", "uncertainty"]
+    },
+    {
+      "id": "am-demodulation",
+      "skill": "foxhole-radio-experimental-lab",
+      "depends_on": ["rf-characterization"],
+      "inputs": ["am_reference", "recovered_audio"],
+      "outputs": ["demodulation_metrics", "audio_comparison"]
+    },
+    {
+      "id": "mechanism-assessment",
+      "skill": "foxhole-radio-experimental-lab",
+      "depends_on": ["dc-characterization", "rf-characterization", "am-demodulation"],
+      "inputs": ["surface_analysis", "temperature_dependence", "pressure_dependence"],
+      "outputs": ["competing_model_assessment", "open_hypotheses"]
+    },
+    {
+      "id": "evidence-release-review",
+      "skill": "arena-evidence-workspace",
+      "depends_on": ["mechanism-assessment"],
+      "tools": [".agent/tools/validate_evidence_ledger.py", ".agent/tools/compose_workflow.py"],
+      "inputs": ["raw_data", "derived_results", "instrument_records"],
+      "outputs": ["evidence_ledger", "experiment_report"]
+    }
+  ]
+}
