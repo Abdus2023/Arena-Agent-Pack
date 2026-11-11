@@ -83,7 +83,7 @@ GitHub Actions run `43061566614` for baseline commit `0887040c51493b7bc7b2e1ba10
 
 The first test commit triggered CI before the workflow dependency-install step had landed. That intermediate run failed on all three Python versions with `ModuleNotFoundError: No module named 'jsonschema'`. This was a sequencing/dependency failure, not a test assertion failure. The workflow was then updated to install the pinned `jsonschema==4.23.0` dependency before schema validation and unit tests.
 
-Latest fully successful run for the updated validation pipeline: [GitHub Actions run 43067216984](https://github.com/Abdus2023/Arena-Agent-Pack/actions/runs/43067216984), commit `cb5443e9c204308e7bca433d68386c89b2504abe`. Python 3.10, 3.11, and 3.12 each passed:
+Latest fully successful run for the updated validation pipeline: [GitHub Actions run 43067386855](https://github.com/Abdus2023/Arena-Agent-Pack/actions/runs/43067386855), commit `499f9b8c7b5e6341fc662f6c41a60db955047895` (including this report update). Python 3.10, 3.11, and 3.12 each passed:
 - Structural validation of all 11 skills.
 - DAG/reference composition checks for all 3 workflow manifests (planning only; `execution_performed: false`).
 - Draft 2020-12 schema meta-validation and instance validation for all 3 workflow manifests and the valid evidence-ledger fixture.
