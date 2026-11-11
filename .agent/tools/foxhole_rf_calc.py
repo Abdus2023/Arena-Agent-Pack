@@ -16,34 +16,56 @@ def positive(name: str, value: float) -> float:
         raise ValueError(f"{name} must be finite and > 0")
     return value
 
+def finite_result(name: str, value: float) -> float:
+    if not math.isfinite(value):
+        raise ValueError(f"{name} is outside the representable numeric range")
+    return value
+
 def resonant_capacitance(frequency_hz: float, inductance_h: float) -> float:
     f = positive("frequency_hz", frequency_hz)
     l = positive("inductance_h", inductance_h)
-    return 1.0 / ((2.0 * math.pi * f) ** 2 * l)
+    try:
+        result = 1.0 / ((2.0 * math.pi * f) ** 2 * l)
+    except (OverflowError, ZeroDivisionError) as exc:
+        raise ValueError("resonant capacitance is outside the representable numeric range") from exc
+    return positive("calculated_capacitance_f", finite_result("calculated_capacitance_f", result))
 
 def resonant_frequency(inductance_h: float, capacitance_f: float) -> float:
     l = positive("inductance_h", inductance_h)
     c = positive("capacitance_f", capacitance_f)
-    return 1.0 / (2.0 * math.pi * math.sqrt(l * c))
+    try:
+        result = 1.0 / (2.0 * math.pi * math.sqrt(l * c))
+    except (OverflowError, ZeroDivisionError) as exc:
+        raise ValueError("resonant frequency is outside the representable numeric range") from exc
+    return positive("calculated_frequency_hz", finite_result("calculated_frequency_hz", result))
 
 def bandwidth_hz(center_hz: float, q: float) -> float:
-    return positive("center_hz", center_hz) / positive("q", q)
+    result = positive("center_hz", center_hz) / positive("q", q)
+    return positive("calculated_bandwidth_hz", finite_result("calculated_bandwidth_hz", result))
 
 def thermal_noise_rms(resistance_ohm: float, bandwidth_hz_value: float, temperature_k: float = 290.0) -> float:
     r = positive("resistance_ohm", resistance_ohm)
     b = positive("bandwidth_hz", bandwidth_hz_value)
     t = positive("temperature_k", temperature_k)
-    return math.sqrt(4.0 * K_B * t * r * b)
+    try:
+        result = math.sqrt(4.0 * K_B * t * r * b)
+    except (OverflowError, ValueError) as exc:
+        raise ValueError("thermal-noise result is outside the representable numeric range") from exc
+    return finite_result("noise_rms_v", result)
 
 def dbm_to_watts(dbm: float) -> float:
     if not math.isfinite(dbm):
         raise ValueError("dbm must be finite")
-    return 1e-3 * (10.0 ** (dbm / 10.0))
+    try:
+        result = 1e-3 * (10.0 ** (dbm / 10.0))
+    except OverflowError as exc:
+        raise ValueError("power is outside the representable numeric range") from exc
+    return finite_result("power_w", result)
 
 def rectification_ratio(forward_current_a: float, reverse_current_a: float) -> float:
     f = positive("forward_current_a", abs(forward_current_a))
     r = positive("reverse_current_a", abs(reverse_current_a))
-    return f / r
+    return finite_result("rectification_ratio", f / r)
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
