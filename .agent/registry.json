@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "workspace_id": "arena-agent-pack-skills",
+  "repository": "Abdus2023/Arena-Agent-Pack",
+  "branch": "main",
+  "authority": "process-and-evidence-workflow-only",
+  "skills": [
+    {
+      "id": "skill-creator",
+      "path": "skills/skill-creator/SKILL.md",
+      "status": "DRAFT"
+    },
+    {
+      "id": "arena-evidence-governance",
+      "path": "skills/arena-evidence-governance/SKILL.md",
+      "status": "DRAFT"
+    },
+    {
+      "id": "arena-repository-audit-and-knowledge",
+      "path": "skills/arena-repository-audit-and-knowledge/SKILL.md",
+      "status": "DRAFT"
+    },
+    {
+      "id": "arena-workspace-publication",
+      "path": "skills/arena-workspace-publication/SKILL.md",
+      "status": "DRAFT"
+    }
+  ],
+  "tools": [
+    {
+      "id": "validate-skill",
+      "path": "tools/validate_skill.py",
+      "status": "DRAFT"
+    }
+  ],
+  "workflows": [
+    "workflows/arena-evidence-to-publication.md"
+  ]
+}
