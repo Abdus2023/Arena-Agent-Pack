@@ -54,7 +54,7 @@ Do not publish when the export plan has unresolved integrity errors without expl
 ## Source references
 - `arena_agent_py/arena_agent/export.py`
 - `arena_agent_py/arena_agent/html.py`
-- `arena_agent_py/arena_agent/wiki.py` (if present in the selected revision; otherwise consult CLI/wiki implementation)
+- `arena_agent_py/arena_agent/cli.py`, `models.py`, `validation.py`, and `reporting.py` for the maintained wiki command/model/validation/rendering implementation
 - `templates/arena-wiki-page-template.md`
 
 ## Validation status
