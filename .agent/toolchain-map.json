@@ -1,0 +1,150 @@
+{
+  "schema_version": "1.0.0",
+  "workspace_id": "arena-agent-pack-skills",
+  "repository": "Abdus2023/Arena-Agent-Pack",
+  "branch": "main",
+  "nodes": [
+    {
+      "id": "skill-creator",
+      "kind": "skill",
+      "path": ".agent/skills/skill-creator/SKILL.md"
+    },
+    {
+      "id": "arena-evidence-governance",
+      "kind": "skill",
+      "path": ".agent/skills/arena-evidence-governance/SKILL.md"
+    },
+    {
+      "id": "arena-repository-audit-and-knowledge",
+      "kind": "skill",
+      "path": ".agent/skills/arena-repository-audit-and-knowledge/SKILL.md"
+    },
+    {
+      "id": "arena-workspace-publication",
+      "kind": "skill",
+      "path": ".agent/skills/arena-workspace-publication/SKILL.md"
+    },
+    {
+      "id": "validate-skill",
+      "kind": "tool",
+      "path": ".agent/tools/validate_skill.py"
+    },
+    {
+      "id": "validate-skill-test",
+      "kind": "test",
+      "path": ".agent/tests/test_validate_skill.py"
+    },
+    {
+      "id": "arena-evidence-to-publication",
+      "kind": "workflow",
+      "path": ".agent/workflows/arena-evidence-to-publication.md"
+    },
+    {
+      "id": "skill-engineering-standard",
+      "kind": "standard",
+      "path": ".agent/standards/skill-engineering-standard-v1.md"
+    },
+    {
+      "id": "arena-cli",
+      "kind": "application",
+      "path": "arena_agent_py/arena_agent/cli.py"
+    },
+    {
+      "id": "arena-validation",
+      "kind": "library-module",
+      "path": "arena_agent_py/arena_agent/validation.py"
+    },
+    {
+      "id": "arena-export",
+      "kind": "library-module",
+      "path": "arena_agent_py/arena_agent/export.py"
+    },
+    {
+      "id": "arena-html",
+      "kind": "library-module",
+      "path": "arena_agent_py/arena_agent/html.py"
+    },
+    {
+      "id": "arena-instructions-v2",
+      "kind": "specification",
+      "path": "arena-agent-instructions-pack-v2.md"
+    },
+    {
+      "id": "arena-work-item-template",
+      "kind": "template",
+      "path": "templates/arena-work-item-template.md"
+    },
+    {
+      "id": "arena-final-report-template",
+      "kind": "template",
+      "path": "templates/arena-final-report-template.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "skill-creator",
+      "to": "arena-evidence-governance",
+      "relation": "authors"
+    },
+    {
+      "from": "skill-creator",
+      "to": "arena-repository-audit-and-knowledge",
+      "relation": "authors"
+    },
+    {
+      "from": "skill-creator",
+      "to": "arena-workspace-publication",
+      "relation": "authors"
+    },
+    {
+      "from": "arena-instructions-v2",
+      "to": "arena-evidence-governance",
+      "relation": "specifies"
+    },
+    {
+      "from": "arena-cli",
+      "to": "arena-evidence-governance",
+      "relation": "implements"
+    },
+    {
+      "from": "arena-validation",
+      "to": "arena-evidence-governance",
+      "relation": "implements"
+    },
+    {
+      "from": "arena-cli",
+      "to": "arena-repository-audit-and-knowledge",
+      "relation": "implements"
+    },
+    {
+      "from": "arena-export",
+      "to": "arena-workspace-publication",
+      "relation": "implements"
+    },
+    {
+      "from": "arena-html",
+      "to": "arena-workspace-publication",
+      "relation": "implements"
+    },
+    {
+      "from": "arena-evidence-to-publication",
+      "to": "arena-evidence-governance",
+      "relation": "uses"
+    },
+    {
+      "from": "arena-evidence-to-publication",
+      "to": "arena-repository-audit-and-knowledge",
+      "relation": "uses"
+    },
+    {
+      "from": "arena-evidence-to-publication",
+      "to": "arena-workspace-publication",
+      "relation": "uses"
+    },
+    {
+      "from": "validate-skill-test",
+      "to": "validate-skill",
+      "relation": "tests"
+    }
+  ]
+}
